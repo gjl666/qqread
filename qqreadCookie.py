@@ -56,8 +56,8 @@ if "QQREADHEADERS" and "QQREADTIMEHEADERS" and "QQREADTIMEURL" in os.environ:
 #######################################
 
 
-def valid(qqheaders):
-    headers = eval(qqheaders[0])
+def valid(qqreadheaders):
+    headers = eval(qqreadheaders[0])
     response = requests.get(
         'https://mqqapi.reader.qq.com/mqq/user/init', headers=headers)
     if response.json()["data"]['isLogin'] == False:
