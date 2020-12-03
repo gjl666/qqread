@@ -38,6 +38,7 @@ def serverJ(title, content):
         print("server酱服务的SCKEY未设置!!\n取消推送")
         return
     print("serverJ服务启动")
+    content = content.replace("\n", "\n\n")
     data = {
         "text": title,
         "desp": content
@@ -80,7 +81,7 @@ def telegram_bot(title, content):
                  '\n\n'+content, "disable_web_page_preview": "true"}
     response = requests.post(
         url=f'https://api.telegram.org/bot{tg_bot_token}/sendMessage', data=send_data)
-    print(response.text)
+    print(response.json()['ok'])
 
 
 if "NOTIFYCFG" in os.environ and os.environ["NOTIFYCFG"].strip():

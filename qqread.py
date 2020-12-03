@@ -129,11 +129,11 @@ def qqreadaddtime(headers, addtimeurl):
     """上传阅读时长"""
     sectime = random.randint(TIME*60*1000, (TIME+1)*60*1000)
     findtime = re.compile(r'readTime=(.*?)&')
-    findtime1 = re.compile(r'readTime%22%3A(.*?)%2C')
+    #findtime1 = re.compile(r'readTime%22%3A(.*?)%2C')
     url = re.sub(findtime.findall(addtimeurl)[
                  0], str(sectime), str(addtimeurl))
-    url = re.sub(findtime1.findall(addtimeurl)[
-                 0], str(sectime), str(addtimeurl))
+    #url = re.sub(findtime1.findall(addtimeurl)[
+    #             0], str(sectime), str(addtimeurl))
     delay()
     addtime_data = requests.get(url, headers=ast.literal_eval(headers)).json()
     return addtime_data
@@ -213,7 +213,7 @@ def main():
                     tz += f"【视频奖励】获得{video_data['data']['amount']}金币\n"
 
             if task_data['taskList'][i]['title'].find("阅读任务") != -1 and task_data['taskList'][i]['doneFlag'] == 0:
-                if todaytime_data >= 1 and todaytime_data < 5:
+                if todaytime_data >= 1 and todaytime_data < 15:
                     todaygift_data = qqreadtodaygift(secrets[0], 30)
                     if todaygift_data['amount'] > 0:
                         tz += f"【阅读金币1】获得{todaygift_data['amount']}金币\n"
